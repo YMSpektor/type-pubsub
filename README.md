@@ -10,7 +10,7 @@ To start using type-pubsub install the npm package:
 npm install type-pubsub
 ```
 
-Also you need to configure your TypeScript to enable experimental decorators. Add these line to your `tsconfig.json` file under the `compilerOptions` key:
+Also you need to configure your TypeScript to enable experimental decorators. Add this line to your `tsconfig.json` file under the `compilerOptions` key:
 
 ```json
 "experimentalDecorators": true,
