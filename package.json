@@ -1,19 +1,31 @@
 {
   "name": "type-pubsub",
   "version": "0.1.0",
-  "description": "",
+  "description": "TypeScript decorators implementing the Publish/Subscribe pattern for Node.js and browser",
   "author": "Yuri Spektor",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn examples/index.ts",
+    "copy": "copyfiles package.json README.md dist",
     "prebuild": "rimraf dist",
-    "build": "tsc --project tsconfig.prod.json"
+    "build": "tsc --project tsconfig.prod.json && npm run copy",
+    "dist": "cd dist && npm publish"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YMSpektor/type-pubsub.git"
+  },
+  "keywords": ["pubsub", "publish", "subscribe", "pub/sub", "publish/subscribe", "observer", "event", "events", "emitter", "eventemitter"],
+  "bugs": {
+    "url": "https://github.com/YMSpektor/type-pubsub/issues"
+  },
+  "homepage": "https://github.com/YMSpektor/type-pubsub#readme",
   "dependencies": {
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/node": "^16.4.1",
+    "copyfiles": "^2.4.1",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.5"
