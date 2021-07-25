@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { PubSub, Subscribe, Subscriber, Unsubscribe } from '../src';
 
 @Subscriber()

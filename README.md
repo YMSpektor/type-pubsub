@@ -4,29 +4,21 @@
 
 ## Installation
 
-To start using type-pubsub install the required npm packages:
+To start using type-pubsub install the npm package:
 
 ```bash
-npm install type-pubsub reflect-metadata
+npm install type-pubsub
 ```
 
-The `reflect-metadata` package is required to make the type reflection work. You must import it at the first line of your application entry file:
-
-```ts
-import 'reflect-metadata';
-```
-
-Also you need to configure your TypeScript to enable decorators and emitting decorator metadata. Add these two lines to your `tsconfig.json` file under the `compilerOptions` key:
+Also you need to configure your TypeScript to enable experimental decorators. Add these line to your `tsconfig.json` file under the `compilerOptions` key:
 
 ```json
-"emitDecoratorMetadata": true,
 "experimentalDecorators": true,
 ```
 
 ## Basic Usage
 
 ```ts
-import 'reflect-metadata';
 import { PubSub, Subscribe, Subscriber, Unsubscribe } from 'type-pubsub';
 
 @Subscriber()
