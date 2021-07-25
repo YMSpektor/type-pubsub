@@ -1,0 +1,1 @@
+export type MessageHandler<DataType, MessageType> = (data: DataType, message: MessageType) => void;

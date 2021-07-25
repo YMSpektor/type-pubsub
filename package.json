@@ -1,0 +1,21 @@
+{
+  "name": "type-pubsub",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Yuri Spektor",
+  "license": "ISC",
+  "scripts": {
+    "dev": "ts-node-dev --respawn examples/index.ts",
+    "prebuild": "rimraf dist",
+    "build": "tsc --project tsconfig.prod.json"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.1",
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  }
+}
