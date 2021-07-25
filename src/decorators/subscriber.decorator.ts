@@ -3,10 +3,16 @@ import { SubscriptionMetadata } from "../types/subscription-metadata.type";
 import { PubSub } from "../consts/pubsub.const";
 import { PubSubService } from "../types/pubsub-service.type";
 
-export function Subscriber(pubsub?: PubSubService<any>): ClassDecorator {
-    pubsub = pubsub || PubSub;
+export interface SubscriberConfig {
+    channel?: PubSubService<any>;
+    createInstance?: boolean;
+    constructorParameters?: any[];
+}
+
+export function Subscriber(config?: SubscriberConfig): ClassDecorator {
+    const channel = config?.channel || PubSub;
     return function(target) {
-        Reflect.defineMetadata(CHANNEL_METADATA_KEY, pubsub, target.prototype);
+        Reflect.defineMetadata(CHANNEL_METADATA_KEY, channel, target.prototype);
         
         const newConstructor: any = function (...args: any[]) {
             const targetConstructor: any = target;
@@ -18,13 +24,18 @@ export function Subscriber(pubsub?: PubSubService<any>): ClassDecorator {
                 subscriptions.forEach(subscription => {
                     const handler = subscription.handler.bind(instance);
                     handlers.push({message: subscription.message, handler});
-                    pubsub!.subscribe(subscription.message, handler);
+                    channel.subscribe(subscription.message, handler);
                 });
             }
             return instance;
         }
 
         newConstructor.prototype = target.prototype;
+
+        if (config?.createInstance) {
+            new newConstructor(config.constructorParameters);
+        }
+
         return newConstructor;
-    }
+    };
 }

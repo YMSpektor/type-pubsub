@@ -41,9 +41,9 @@ PubSub.publish('TEST_MESSAGE', "This message won't be displayed");
 You can also create channels to publish messages manually and specify which one you want to observe:
 
 ```ts
-const channel = new Channel<string>();
+const myChannel = new Channel<string>();
 
-@Subscriber(channel)
+@Subscriber({ channel: myChannel })
 class SubscriberExample {
   @Subscribe('TEST_MESSAGE')
   foo(data: string, message: string): void {
@@ -54,7 +54,7 @@ class SubscriberExample {
 const data = {
   // Some data here
 };
-channel.publish('TEST_MESSAGE', data);
+myChannel.publish('TEST_MESSAGE', data);
 ```
 
 If needed, you can mark a method with multiple @Subscribe() decorators to observe different messages:
