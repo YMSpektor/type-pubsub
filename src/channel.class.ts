@@ -8,7 +8,7 @@ export class Channel<MessageType> implements PubSubService<MessageType> {
         let handlers = this.subscriptions.get(message);
         if (handlers) {
             handlers.forEach(handler => {
-                handler(data, message);
+                handler(data, message, this, handler);
             });
         }
     }
@@ -35,6 +35,9 @@ export class Channel<MessageType> implements PubSubService<MessageType> {
         }
     }
 
+    /**
+     * Unregister all subscriptions for the channel
+     */
     unsubscribeAll() {
         this.subscriptions.clear();
     }
